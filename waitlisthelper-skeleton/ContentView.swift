@@ -15,15 +15,19 @@ struct ContentView: View {
     @State var text = ""
     
     var body: some View {
+            //YOUR CODE HERE//
             NavigationView {
+                //YOUR CODE HERE//
                 TabView {
                     ZStack {
+                        //YOUR CODE HERE//
                         Image("calculate_background")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .ignoresSafeArea()
                         VStack {
                             Spacer()
+                            //YOUR CODE HERE//
                             Text("WILL YOU GET OFF THE WAITLIST?")
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
@@ -31,10 +35,12 @@ struct ContentView: View {
                                 .padding()
                             Spacer()
                             HStack {
+                                //YOUR CODE HERE//
                                 Text("Place on Waitlist: \(waitlistPlace, specifier: "%.f")")
                                     .foregroundColor(.black)
                                 Spacer()
                             }
+                            //YOUR CODE HERE//
                             Slider(value: $waitlistPlace, in: 0...200, step: 1)
                                 .padding()
                                 .overlay(
@@ -43,10 +49,12 @@ struct ContentView: View {
                                             .foregroundColor(Color.blue)
                                     )
                             HStack {
+                                //YOUR CODE HERE//
                                 Text("Class Size: \(classSize, specifier: "%.f")")
                                     .foregroundColor(.black)
                                 Spacer()
                             }
+                            //YOUR CODE HERE//
                             Slider(value: $classSize, in: 0...1000, step: 1)
                                 .padding()
                                 .overlay(
@@ -54,14 +62,15 @@ struct ContentView: View {
                                             .stroke(lineWidth: 2.0)
                                             .foregroundColor(Color.blue)
                                     )
+                            //YOUR CODE HERE//
                             NavigationLink(destination: ResultView(prob: $probability, feedback: $text), isActive: $calculate) { EmptyView() } .padding()
                             
                             Button("CALCULATE") {
-                                
+                                //YOUR CODE HERE//
                                 calculateProbability(waitlistPlace: Int(waitlistPlace), classSize: Int(classSize))
                                 text = getFeedbackText()
                                 calculate = true
-                            } .buttonStyle(GrowingButton())
+                            } .buttonStyle(CustomButton())
                             
                             Spacer()
                             
@@ -75,7 +84,7 @@ struct ContentView: View {
                         Text("Home")
                     }
                     
-                    
+                    //DIY VIEW GOES HERE//
                     ZStack {
                         Image("calculate_background")
                             .resizable()
@@ -89,10 +98,10 @@ struct ContentView: View {
                                     .padding()
                                 Spacer()
                             } .padding()
-                            
+
                             Spacer()
                             }
-                        
+
                     }
                         .tabItem {
                             Image(systemName: "person.crop.circle")
@@ -105,6 +114,7 @@ struct ContentView: View {
                 
         }
     func calculateProbability(waitlistPlace: Int, classSize: Int) {
+        //YOUR CODE HERE//
         let tenth = classSize / 10
         if  (waitlistPlace <= tenth) {
             probability = 100
@@ -144,6 +154,7 @@ struct ResultView: View {
                 .ignoresSafeArea()
             VStack {
                 HStack {
+                    //YOUR CODE HERE//
                     Button(action: {
                                self.presentation.wrappedValue.dismiss()
                             }) {
@@ -172,9 +183,10 @@ struct ResultView: View {
     }
 }
 
-struct GrowingButton: ButtonStyle {
+struct CustomButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            //YOUR CODE HERE//
             .padding()
             .background(Color.blue)
             .foregroundColor(.white)
