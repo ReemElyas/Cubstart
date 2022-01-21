@@ -15,59 +15,37 @@ struct ContentView: View {
     @State var text = ""
     
     var body: some View {
-            //YOUR CODE HERE//
-            NavigationView {
-                //YOUR CODE HERE//
-                TabView {
+            //YOUR CODE HERE (NavView)//
+        
+                //YOUR CODE HERE (TabView)//
+        
                     ZStack {
-                        //YOUR CODE HERE//
-                        Image("calculate_background")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .ignoresSafeArea()
+                        //YOUR CODE HERE (background)//
+
                         VStack {
                             Spacer()
-                            //YOUR CODE HERE//
-                            Text("WILL YOU GET OFF THE WAITLIST?")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.black)
-                                .padding()
+                            //YOUR CODE HERE (title)//
+
                             Spacer()
                             HStack {
-                                //YOUR CODE HERE//
-                                Text("Place on Waitlist: \(waitlistPlace, specifier: "%.f")")
-                                    .foregroundColor(.black)
+                                //YOUR CODE HERE (description)//
+                                
                                 Spacer()
                             }
-                            //YOUR CODE HERE//
-                            Slider(value: $waitlistPlace, in: 0...200, step: 1)
-                                .padding()
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 15.0)
-                                            .stroke(lineWidth: 2.0)
-                                            .foregroundColor(Color.blue)
-                                    )
+                            //YOUR CODE HERE (slider)//
+                           
                             HStack {
-                                //YOUR CODE HERE//
-                                Text("Class Size: \(classSize, specifier: "%.f")")
-                                    .foregroundColor(.black)
+                                //YOUR CODE HERE (description)//
+                                
                                 Spacer()
                             }
-                            //YOUR CODE HERE//
-                            Slider(value: $classSize, in: 0...1000, step: 1)
-                                .padding()
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 15.0)
-                                            .stroke(lineWidth: 2.0)
-                                            .foregroundColor(Color.blue)
-                                    )
-                            //YOUR CODE HERE//
-                            NavigationLink(destination: ResultView(prob: $probability, feedback: $text), isActive: $calculate) { EmptyView() } .padding()
+                            //YOUR CODE HERE (slider)//
+                            
+//                            NavigationLink(destination: ResultView(prob: $probability, feedback: $text), isActive: $calculate) { EmptyView() } .padding()
                             
                             Button("CALCULATE") {
-                                //YOUR CODE HERE//
-                                calculateProbability(waitlistPlace: Int(waitlistPlace), classSize: Int(classSize))
+                                //YOUR CODE HERE (calculate)//
+                                
                                 text = getFeedbackText()
                                 calculate = true
                             } .buttonStyle(CustomButton())
@@ -79,50 +57,22 @@ struct ContentView: View {
                     }
                     .navigationBarTitle("")
                     .navigationBarHidden(true)
-                    .tabItem{
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                    }
+//                    .tabItem{
+//                        Image(systemName: "house.fill")
+//                        Text("Home")
+//                    }
                     
                     //DIY VIEW GOES HERE//
-                    ZStack {
-                        Image("calculate_background")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .ignoresSafeArea()
-                        VStack {
-                            HStack {
-                                Text("MY \nCLASSES")
-                                    .font(.system(size: 40, weight: .bold))
-                                    .foregroundColor(Color.black)
-                                    .padding()
-                                Spacer()
-                            } .padding()
-
-                            Spacer()
-                            }
-
-                    }
-                        .tabItem {
-                            Image(systemName: "person.crop.circle")
-                            Text("Profile")
-                        }
                     
-                }
+                    
                 
-            }
+                
+            
                 
         }
     func calculateProbability(waitlistPlace: Int, classSize: Int) {
         //YOUR CODE HERE//
-        let tenth = classSize / 10
-        if  (waitlistPlace <= tenth) {
-            probability = 100
-        } else if (waitlistPlace > tenth * 2) {
-            probability = 0
-        } else {
-            probability = 100 - Int(((Float(waitlistPlace - tenth) / Float(tenth))*100))
-        }
+        
         
     }
     
@@ -137,7 +87,7 @@ struct ContentView: View {
 }
 
 struct ResultView: View {
-    @Environment(\.presentationMode) var presentation: Binding<PresentationMode>
+//    @Environment(\.presentationMode) var presentation: Binding<PresentationMode>
     @Binding var prob: Int
     @Binding var feedback: String
     
@@ -154,14 +104,8 @@ struct ResultView: View {
                 .ignoresSafeArea()
             VStack {
                 HStack {
-                    //YOUR CODE HERE//
-                    Button(action: {
-                               self.presentation.wrappedValue.dismiss()
-                            }) {
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.white)
-                            }
-                            .navigationBarHidden(true)
+                    //YOUR CODE HERE (button back)//
+                    
                     Spacer()
                 } .padding()
                 Spacer()
@@ -186,13 +130,8 @@ struct ResultView: View {
 struct CustomButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            //YOUR CODE HERE//
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .clipShape(Capsule())
-            .scaleEffect(configuration.isPressed ? 1.2 : 1)
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+            //YOUR CODE HERE (button style)//
+            
     }
 }
 
